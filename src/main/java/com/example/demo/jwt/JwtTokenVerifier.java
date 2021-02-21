@@ -44,7 +44,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
             filterChain.doFilter(request, response);
             return;
-        }
+        } else {
 
         String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), "");
 
@@ -77,5 +77,6 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+        }
     }
 }
